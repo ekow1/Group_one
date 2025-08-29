@@ -1,0 +1,13 @@
+# Ignore VS Code settings
+.vscode/
+
+# Ignore Kiro files (if any)
+kiro/
+kiro*
+
+# Ignore PDF files
+*.pdf
+
+# Node and OS junk (optional, safe defaults)
+.DS_Store
+Thumbs.db
