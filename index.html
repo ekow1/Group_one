@@ -45,6 +45,7 @@
   </header>
 
   <main id="main">
+  ...existing code...
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-copy">
@@ -359,4 +360,23 @@
   </script>
 </body>
 
+  <!-- Floating Back to Top Button (should be outside <main> for best results) -->
+  <button id="backToTop" aria-label="Back to top" style="display:none">
+    ↑ Top
+  </button>
+  <script>
+    // Floating Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
 </html>
