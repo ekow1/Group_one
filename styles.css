@@ -4,6 +4,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 32px;
   margin-top: 36px;
+}
 .platform-feature-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -1101,7 +1102,7 @@ textarea:focus {
   .contact-form {
     grid-template-columns: 1fr;
   }
-}
+
 
 /* Spacing rhythm improvements */
 .section {
