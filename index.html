@@ -33,13 +33,14 @@
       <nav class="site-nav" aria-label="Primary">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
         <ul id="nav-menu" class="nav-list">
-          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#solutions" class="active">Solutions</a></li>
           <li><a href="#platform">Platform</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#customers">Customers</a></li>
           <li><a href="#about">About</a></li>
           <li><a class="btn btn-small btn-primary" href="#contact">Get started</a></li>
         </ul>
+        <div class="nav-underline" id="navUnderline"></div>
       </nav>
     </div>
   </header>
@@ -376,6 +377,53 @@
     });
     backToTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Moving underline for nav
+    const nav = document.querySelector('.site-nav');
+    const navUnderline = document.getElementById('navUnderline');
+    const navLinks = Array.from(document.querySelectorAll('.nav-list a:not(.btn)'));
+    const sectionIds = navLinks.map(link => link.getAttribute('href').replace('#', ''));
+
+    function setUnderlineTo(link) {
+      const rect = link.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+      navUnderline.style.width = rect.width + 'px';
+      navUnderline.style.left = (rect.left - navRect.left) + 'px';
+      navUnderline.style.top = (rect.bottom - navRect.top - 2) + 'px';
+      navUnderline.style.opacity = 1;
+    }
+
+    function updateActiveNav() {
+      let found = false;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section && window.scrollY + 80 >= section.offsetTop) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          navLinks[i].classList.add('active');
+          setUnderlineTo(navLinks[i]);
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        navUnderline.style.opacity = 0;
+      }
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        setTimeout(() => setUnderlineTo(link), 300);
+      });
+    });
+
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.nav-list a.active');
+      if (active) setUnderlineTo(active);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      updateActiveNav();
     });
   </script>
 </body>

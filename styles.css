@@ -4,7 +4,6 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 32px;
   margin-top: 36px;
-}
 .platform-feature-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -1071,6 +1070,29 @@ textarea:focus {
     text-align: center;
     gap: 16px;
   }
+
+}
+
+.nav-list a.active,
+.nav-list a:active {
+  color: var(--black);
+  background: none;
+  position: relative;
+}
+
+.nav-underline {
+  position: absolute;
+  height: 3px;
+  background: var(--black, #111);
+  border-radius: 2px;
+  transition: left 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1), top 0.3s, opacity 0.2s;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.site-nav {
+  position: relative;
+}
   
   .footer-links {
     order: -1;
