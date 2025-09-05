@@ -79,7 +79,8 @@
 }
 
 /* White text for Get Started button */
-.btn-white-text {
+
+white-text {
   color: #fff !important;
   background: var(--accent);
   border-color: var(--accent);
@@ -217,9 +218,11 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: var(--charcoal);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
+  /* No hover effect for form submit button */
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: var(--shadow);
+  transform: none;
 }
 
 .btn-secondary {
